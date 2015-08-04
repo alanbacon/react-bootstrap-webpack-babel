@@ -2,19 +2,19 @@
 
 ###Simple Shopping List example of a React + Flux application and Webpack build environment 
 
-###Getting Started
+####Getting Started
 
-####Install development enviroment and clientside dependencies
+#####Install development enviroment and clientside dependencies
 > cd /www
 > npm install
 
-####Compile, recompile on code changes, serve content at localhost:8000 
+#####Compile, recompile on code changes, serve content at localhost:8000 
 > npm run dev-server
 
-####Compile, recompile on code changes, serve it yourself
+#####Compile, recompile on code changes, serve it yourself
 > npm run dev
 
-####Compile production code, serve it yourself
+#####Compile production code, serve it yourself
 > npm run production
 
 ####Clientside Enviroment
