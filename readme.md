@@ -1,24 +1,33 @@
-##ux-webpack-react-bootstrap
+ux-webpack-react-bootstrap
+==========================
+Simple React + Flux application built with Webpack 
 
-###Simple Shopping List example of a React + Flux application and Webpack build environment 
+Getting Started
+---------------
 
-####Getting Started
+* Install development enviroment and clientside dependencies
+```
+cd /www
+npm install
+```
 
-#####Install development enviroment and clientside dependencies
-> cd /www
+* Compile, recompile on code changes, serve content at localhost:8000 
+```
+npm run dev-server
+```
 
-> npm install
+* Compile, recompile on code changes, serve it yourself (however you like - python -m SimpleHTTPServer maybe)
+```
+npm run dev
+```
 
-#####Compile, recompile on code changes, serve content at localhost:8000 
-> npm run dev-server
+* Compile production code, serve it yourself
+```
+npm run production
+```
 
-#####Compile, recompile on code changes, serve it yourself
-> npm run dev
-
-#####Compile production code, serve it yourself
-> npm run production
-
-####Clientside Enviroment
+Clientside Enviroment
+---------------------
 
 * [React](http://facebook.github.io/react)
 * [Flux](http://facebook.github.io/flux/)
@@ -26,7 +35,8 @@
 * [React-Bootstrap](http://react-bootstrap.github.io)
 	* [Bootstrap](http://getbootstrap.com/)
 
-####Development Environment
+Development Environment
+-----------------------
 
 * [Webpack](http://webpack.github.io/)
 * [Webpack Dev Server](http://webpack.github.io/docs/webpack-dev-server.html)
