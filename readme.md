@@ -6,6 +6,7 @@
 
 #####Install development enviroment and clientside dependencies
 > cd /www
+
 > npm install
 
 #####Compile, recompile on code changes, serve content at localhost:8000 
