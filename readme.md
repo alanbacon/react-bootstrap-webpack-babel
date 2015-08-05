@@ -5,24 +5,27 @@ Simple React + Flux application built with Webpack
 Getting Started
 ---------------
 
-* Install development enviroment and clientside dependencies
+* Install development environment and clientside dependencies
 ```
 cd /www
 npm install
 ```
 
-* Compile, recompile on code changes, serve content at localhost:8000 
+* Complile, serve content at localhost:8000, recompile on code changes, refresh browser automatically on code changes
 ```
+cd /www
 npm run dev-server
 ```
 
-* Compile, recompile on code changes, serve it yourself (however you like - python -m SimpleHTTPServer maybe)
+* Compile, recompile on code changes, serve it yourself (using your fave cmd line web server from /www/build)
 ```
+cd /www
 npm run dev
 ```
 
-* Compile production code, serve it yourself
+* Compile production code
 ```
+cd /www
 npm run production
 ```
 
