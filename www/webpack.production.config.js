@@ -11,7 +11,7 @@ module.exports = {
 		extensions: ['', '.js', '.jsx', '.json'],
 
 		alias: {
-			'react': node_dir + '/react/react.min.js',
+			'react': node_dir + '/react/dist/react.min.js',
 			'reflux': node_dir + '/reflux/dist/reflux.min.js',
 			'bootstrap': node_dir + '/bootstrap/dist/js/bootstrap.min.js',
 			'react-bootstrap': node_dir + '/react-bootstrap/dist/react-bootstrap.min.js'
