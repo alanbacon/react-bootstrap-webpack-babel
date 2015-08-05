@@ -3,9 +3,12 @@ var node_dir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
 	devtool: 'eval',
-	entry: [
-		path.resolve(__dirname,'./scripts/index.js')
-	],
+	entry: {
+		shoppingList: [
+			'webpack-dev-server/client?http://localhost:8000',
+			path.resolve(__dirname,'./scripts/index.js')
+		]
+	},
     devServer: {
 		port: 8000
     },
@@ -21,7 +24,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname,'build'),
-		filename: 'bundle.js'
+		filename: '[name].js'
 	},
 	module: {
 		loaders: [

@@ -3,9 +3,13 @@ var node_dir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
 	devtool: 'eval',
-	entry: [
-		path.resolve(__dirname,'./scripts/index.js')
-	],
+	entry: {
+		shoppingList: [
+			path.resolve(__dirname,'./scripts/index.js')
+		]
+	},
+
+
 
 	resolve: {
 		extensions: ['', '.js', '.jsx', '.json'],
@@ -19,7 +23,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname,'build'),
-		filename: 'bundle.js'
+		filename: '[name].js'
 	},
 	module: {
 		loaders: [

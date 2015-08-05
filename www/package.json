@@ -5,7 +5,7 @@
   "scripts": {
     "production": "webpack -p --config webpack.production.config.js",
     "dev": "webpack --devtool inline-source-map --progress --colors --watch --config webpack.dev.config.js",
-    "dev-server": "webpack-dev-server --devtool inline-source-map --progress --colors --watch --config webpack.dev.config.js"
+    "dev-server": "webpack-dev-server --devtool eval --progress --colors --content-base build --config webpack.dev.config.js"
   },
   "main": "scripts/main.js",
   "author": "Matthew Brooks",
