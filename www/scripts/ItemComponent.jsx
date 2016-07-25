@@ -16,7 +16,7 @@ var ItemComponent = React.createClass({
 		value:React.PropTypes.number.isRequired,
 		id:React.PropTypes.number.isRequired
 	},
-
+	
 	incItem: function()
 	{
 		Actions.incItem({id:this.props.id, inc:1});

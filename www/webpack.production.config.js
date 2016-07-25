@@ -5,25 +5,17 @@ module.exports = {
 	devtool: 'eval',
 	entry: {
 		shoppingList: [
+
 			path.resolve(__dirname,'./scripts/index.js')
 		]
 	},
 
-
-
 	resolve: {
 		extensions: ['', '.js', '.jsx', '.json'],
-
-		alias: {
-			'react': node_dir + '/react/dist/react.min.js',
-			'reflux': node_dir + '/reflux/dist/reflux.min.js',
-			'bootstrap': node_dir + '/bootstrap/dist/js/bootstrap.min.js',
-			'react-bootstrap': node_dir + '/react-bootstrap/dist/react-bootstrap.min.js'
-		}
 	},
 	output: {
-		path: path.resolve(__dirname,'build'),
-		filename: '[name].js'
+		path: path.resolve(__dirname),
+		filename: '[name].bundle.js'
 	},
 	module: {
 		loaders: [

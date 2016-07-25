@@ -4,16 +4,17 @@
   "description": "Simple webpack-react-bootstrap starter environment",
   "scripts": {
     "production": "webpack -p --config webpack.production.config.js",
-    "dev": "webpack --devtool inline-source-map --progress --colors --watch --config webpack.dev.config.js",
-    "dev-server": "webpack-dev-server --devtool eval --progress --colors --content-base build --config webpack.dev.config.js"
+    "dev": "webpack --devtool inline-source-map --progress --colors --watch --watch-poll --config webpack.dev.config.js",
+    "dev-server": "webpack-dev-server --devtool eval --progress --colors --watch-poll --config webpack.dev.config.js"
   },
   "main": "scripts/main.js",
   "author": "Matthew Brooks",
   "license": "",
   "dependencies": {
     "bootstrap": "^3.3.5",
-    "react": "^0.13.3",
-    "react-bootstrap": "^0.24.3",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-bootstrap": "^0.29.4",
     "reflux": "^0.2.11"
   },
   "devDependencies": {
@@ -23,7 +24,7 @@
     "jsx-loader": "^0.13.2",
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",
-    "webpack": "^1.10.5",
+    "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   }
 }

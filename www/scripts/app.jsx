@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
 var Store = require('./store');
 var Actions = require('./actions');
@@ -15,6 +16,9 @@ var App = React.createClass({
 	// Reflux listener mixin
 	//https://github.com/reflux/refluxjs#using-refluxconnect
 
+
+	// alanb: is this called by trigger in Store? because 'list' is specified, the first argument to trigger get passed to this.State.list?
+	// alanb: because state is being changed, render gets called?
 	mixins: [Reflux.connect(Store,'list')], //listen to the store
 
 
@@ -91,12 +95,15 @@ var App = React.createClass({
 				<PageHeader>LET'S PRETEND WE'RE GOING SHOPPING</PageHeader>
 
 				<Well>
-					Add New Item 
+					Add New Item
 					<div style={AddNewItemDivStyle}>
 						<Input type='text' onChange={this.handleNewItemNameChange} onKeyUp={this.handleNewItemNameKeyUp} value={this.state.itemName} />
 						{AddNewItemButton}
 					</div>
 				</Well>
+				{// alanb: how do i put an if statment in here so that whether this component displays or not depends on some boolean variable?
+				// ans: "https://facebook.github.io/react/tips/if-else-in-JSX.html"
+				}
 				{
 					this.state.list.map(function(item) {
 						return <ItemComponent key={item.id} id={item.id} name={item.name} value={item.value}/>;
@@ -111,7 +118,7 @@ var App = React.createClass({
 
 module.exports = {
 	go:function(){
-		React.render(
+		ReactDOM.render(
 			<App />,
 			document.getElementById('react')
 		);

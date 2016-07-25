@@ -38,7 +38,7 @@ var Store = Reflux.createStore({
 	onSearch: function() {
 		// Dummy search function. We'd go off to the DB to get stuff here. But for now:
 		this.items = [new Item('Sausages', 3), new Item('Baked Beans', 1), new Item('Monkeys', 4)];
-		this.trigger(this.items);		
+		this.trigger(this.items);
 	},
 
 	onAddItem: function(e) {
