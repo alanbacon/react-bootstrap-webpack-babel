@@ -1,4 +1,5 @@
-var React = require('react');
+//var React = require('react');
+import React from 'react';
 var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
 var Store = require('./store');
@@ -6,9 +7,13 @@ var Actions = require('./actions');
 var PageHeader = require('react-bootstrap').PageHeader;
 var Button = require('react-bootstrap').Button;
 var Well = require('react-bootstrap').Well;
-var Input = require('react-bootstrap').Input;
+var FormControl = require('react-bootstrap').FormControl;
 
 var ItemComponent = require('./ItemComponent');
+
+class Shape {
+	
+}
 
 var App = React.createClass({
 
@@ -75,10 +80,12 @@ var App = React.createClass({
 
 		var AddNewItemButton;
 		// Enable / Disable Add Button depending on whether we have an itemName
-		if (this.state.itemName.length)
+		if (this.state.itemName.length) {
 			AddNewItemButton = <Button bsStyle='success' onClick={this.handleNewItem}>+</Button>;
-		else
+		}
+		else {
 			AddNewItemButton = <Button bsStyle='success' disabled>+</Button>;
+		}
 
 		// Controlled vs uncontrolled input components - important reading
 		// 		https://facebook.github.io/react/docs/forms.html
@@ -97,7 +104,7 @@ var App = React.createClass({
 				<Well>
 					Add New Item
 					<div style={AddNewItemDivStyle}>
-						<Input type='text' onChange={this.handleNewItemNameChange} onKeyUp={this.handleNewItemNameKeyUp} value={this.state.itemName} />
+						<FormControl type='text' onChange={this.handleNewItemNameChange} onKeyUp={this.handleNewItemNameKeyUp} value={this.state.itemName} />
 						{AddNewItemButton}
 					</div>
 				</Well>

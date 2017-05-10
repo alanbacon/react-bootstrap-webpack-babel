@@ -2,7 +2,6 @@ var path = require('path');
 var node_dir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
-	devtool: 'eval',
 	entry: {
 		shoppingList: [
 
@@ -11,18 +10,31 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: ['', '.js', '.jsx', '.json'],
+		extensions: ['.js', '.jsx', '.json'],
 	},
 	output: {
 		path: path.resolve(__dirname),
 		filename: '[name].bundle.js'
 	},
 	module: {
-		loaders: [
-				{ test: /\.jsx$/, loader: 'jsx-loader'},
-				{ test: /\.json$/, loader: 'json-loader'},
-				{ test: /\.css$/, loader: 'style-loader!css-loader' },
-				{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url?limit=200000' }
+		rules: [
+				{ 	test: /\.jsx?$/, 
+					use: 'babel-loader'
+				},
+				{ 	test: /\.css$/, 
+					use: [
+						{ 
+							loader: 'style-loader' 
+						}, 
+						{ 
+							loader: 'css-loader'
+						}
+					] 
+				},
+				{test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff'},
+      			{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
+		      	{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
+      			{test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml'}
 		]
 	}             
 };
