@@ -33,7 +33,7 @@ var App = React.createClass({
 
 	getInitialState: function() {
 		return {
-			list:[],
+			list: Store.items,
 			itemName:''
 		};
 	},
@@ -43,7 +43,7 @@ var App = React.createClass({
 	//https://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount
 
 	componentWillMount: function() {
-		Actions.search();
+		console.log('App component is mounting');
 	},
 
 	//////////////////////////////////////////////

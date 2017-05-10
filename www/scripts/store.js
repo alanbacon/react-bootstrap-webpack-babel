@@ -8,7 +8,7 @@ var Store = Reflux.createStore({
 	listenables: [Actions],
 	
 	//items is our list of stuff that the store will manage, and the React app will render
-	items:[],
+	items: [],
 
 	minItemQuantity:1,
 	maxItemQuantity:9,
@@ -32,12 +32,17 @@ var Store = Reflux.createStore({
 				return i;
 	},
 
+	getInitialItems: function() {
+		return [new Item('Sausages', 3), new Item('Baked Beans', 1), new Item('Monkeys', 4)];
+	},
+
 	///////////////////////
 	//Store Action Handlers
 
+	// this isn't called anymore
 	onSearch: function() {
 		// Dummy search function. We'd go off to the DB to get stuff here. But for now:
-		this.items = [new Item('Sausages', 3), new Item('Baked Beans', 1), new Item('Monkeys', 4)];
+		this.items = this.getInitialItems();
 		this.trigger(this.items);
 	},
 
@@ -86,5 +91,7 @@ var Store = Reflux.createStore({
 			console.warn("Store tried to inc node with invalid id");
 	}
 });
+
+Store.items = Store.getInitialItems()
 
 module.exports = Store;
