@@ -1,6 +1,7 @@
 //var React = require('react');
 import React from 'react';
 var ReactDOM = require('react-dom');
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 var Reflux = require('reflux');
 var Store = require('./store');
 var Actions = require('./actions');
@@ -9,11 +10,8 @@ var Button = require('react-bootstrap').Button;
 var Well = require('react-bootstrap').Well;
 var FormControl = require('react-bootstrap').FormControl;
 
-var ItemComponent = require('./ItemComponent');
-
-class Shape {
-	
-}
+var Main = require('./main');
+var Summary = require('./summary');
 
 var App = React.createClass({
 
@@ -72,21 +70,11 @@ var App = React.createClass({
 			console.warn('Items must have a name');
 	},
 
+
 	////////////////////////
 	//React component render
 
 	render: function() {
-		var AddNewItemDivStyle = {display:'flex', maxHeight:'34px'}; //showing my limited CSS skills here - maxHeight just makes the button sit nice
-
-		var AddNewItemButton;
-		// Enable / Disable Add Button depending on whether we have an itemName
-		if (this.state.itemName.length) {
-			AddNewItemButton = <Button bsStyle='success' onClick={this.handleNewItem}>+</Button>;
-		}
-		else {
-			AddNewItemButton = <Button bsStyle='success' disabled>+</Button>;
-		}
-
 		// Controlled vs uncontrolled input components - important reading
 		// 		https://facebook.github.io/react/docs/forms.html
 
@@ -97,26 +85,20 @@ var App = React.createClass({
 		// 		http://facebook.github.io/react/tips/inline-styles.html
 
 		return (
-			<div style={{padding:'16px 16px', maxWidth:'600px'}}>
-
-				<PageHeader>LET'S PRETEND WE'RE GOING SHOPPING</PageHeader>
-
-				<Well>
-					Add New Item
-					<div style={AddNewItemDivStyle}>
-						<FormControl type='text' onChange={this.handleNewItemNameChange} onKeyUp={this.handleNewItemNameKeyUp} value={this.state.itemName} />
-						{AddNewItemButton}
-					</div>
-				</Well>
-				{// alanb: how do i put an if statment in here so that whether this component displays or not depends on some boolean variable?
-				// ans: "https://facebook.github.io/react/tips/if-else-in-JSX.html"
-				}
-				{
-					this.state.list.map(function(item) {
-						return <ItemComponent key={item.id} id={item.id} name={item.name} value={item.value}/>;
-					})
-				}
-			</div>
+			<BrowserRouter>
+				<div>
+					<nav>
+      					<ul>
+							<li><Link to='/'>Shop</Link></li>
+							<li><Link to='/summary'>Summary</Link></li>
+						</ul>
+					</nav>
+					<Switch>
+						<Route exact path='/' render={() =>  <Main list={this.state.list}/>} />
+						<Route exact path='/summary' render={() =>  <Summary/>} />
+					</Switch>
+				</div>
+			</BrowserRouter>
 		);
 	}
 });
