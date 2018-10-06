@@ -1,7 +1,7 @@
 //var React = require('react');
 import React from 'react';
 var ReactDOM = require('react-dom');
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import { HashRouter, Switch, Route, Link } from 'react-router-dom'
 var Reflux = require('reflux');
 var Store = require('./store');
 var Actions = require('./actions');
@@ -12,6 +12,7 @@ var FormControl = require('react-bootstrap').FormControl;
 
 var Main = require('./main');
 var Summary = require('./summary');
+
 
 var App = React.createClass({
 
@@ -85,20 +86,20 @@ var App = React.createClass({
 		// 		http://facebook.github.io/react/tips/inline-styles.html
 
 		return (
-			<BrowserRouter>
+			<HashRouter>
 				<div>
 					<nav>
       					<ul>
-							<li><Link to='/'>Shop</Link></li>
-							<li><Link to='/summary'>Summary</Link></li>
+							<li><Link to=''>Shop</Link></li>
+							<li><Link to='summary'>Summary</Link></li>
 						</ul>
 					</nav>
 					<Switch>
 						<Route exact path='/' render={() =>  <Main list={this.state.list}/>} />
-						<Route exact path='/summary' render={() =>  <Summary/>} />
+						<Route path='/summary' render={() =>  <Summary/>} />
 					</Switch>
 				</div>
-			</BrowserRouter>
+			</HashRouter>
 		);
 	}
 });
