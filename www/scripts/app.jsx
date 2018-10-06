@@ -21,9 +21,9 @@ var App = React.createClass({
 	//https://github.com/reflux/refluxjs#using-refluxconnect
 
 
-	// alanb: is this called by trigger in Store? because 'list' is specified, the first argument to trigger get passed to this.State.list?
+	// alanb: is this called by trigger in Store? because 'state' is specified, the first argument to trigger get passed to this.State.storeState
 	// alanb: because state is being changed, render gets called?
-	mixins: [Reflux.connect(Store,'list')], //listen to the store
+	mixins: [Reflux.connect(Store,'state')], //listen to the store
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ var App = React.createClass({
 
 	getInitialState: function() {
 		return {
-			list: Store.items,
+			storeState: Store.state,
 			itemName:''
 		};
 	},
@@ -71,6 +71,10 @@ var App = React.createClass({
 			console.warn('Items must have a name');
 	},
 
+	onSummaryClick: (e) => {
+		Actions.incSummary()
+	},
+
 
 	////////////////////////
 	//React component render
@@ -90,13 +94,13 @@ var App = React.createClass({
 				<div>
 					<nav>
       					<ul>
-							<li><Link to=''>Shop</Link></li>
-							<li><Link to='summary'>Summary</Link></li>
+							<li><Link to='/'>Shop</Link></li>
+							<li><Link to='/summary' onClick={this.onSummaryClick}>Summary</Link></li>
 						</ul>
 					</nav>
 					<Switch>
-						<Route exact path='/' render={() =>  <Main list={this.state.list}/>} />
-						<Route path='/summary' render={() =>  <Summary/>} />
+						<Route exact path='/' render={() =>  <Main list={this.state.storeState.items}/>} />
+						<Route path='/summary' render={() =>  <Summary visitCount={this.state.storeState.summaryCount}/>} />
 					</Switch>
 				</div>
 			</HashRouter>

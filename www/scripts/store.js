@@ -8,7 +8,10 @@ var Store = Reflux.createStore({
 	listenables: [Actions],
 	
 	//items is our list of stuff that the store will manage, and the React app will render
-	items: [],
+	state:{
+		items: [],
+		summaryCount: 0,
+	},
 
 	minItemQuantity:1,
 	maxItemQuantity:9,
@@ -18,17 +21,17 @@ var Store = Reflux.createStore({
 
 	getNodeFromId: function(id)
 	{
-		for(var i = 0; i < this.items.length; i++)
+		for(var i = 0; i < this.state.items.length; i++)
 		{
-			if (this.items[i].id === id)
-				return this.items[i];
+			if (this.state.items[i].id === id)
+				return this.state.items[i];
 		}
 	},
 
 	getNodeIndexFromId: function(id)
 	{
-		for(var i = 0; i < this.items.length; i++)
-			if (this.items[i].id === id)
+		for(var i = 0; i < this.state.items.length; i++)
+			if (this.state.items[i].id === id)
 				return i;
 	},
 
@@ -43,12 +46,12 @@ var Store = Reflux.createStore({
 	onSearch: function() {
 		// Dummy search function. We'd go off to the DB to get stuff here. But for now:
 		this.items = this.getInitialItems();
-		this.trigger(this.items);
+		this.trigger(this.state);
 	},
 
 	onAddItem: function(e) {
-		this.items.push(new Item(e.name));
-		this.trigger(this.items); // Inform listeners that items has been updated
+		this.state.items.push(new Item(e.name));
+		this.trigger(this.state); // Inform listeners that items has been updated
 	},
 
 	onDeleteItem: function(e) {
@@ -56,8 +59,8 @@ var Store = Reflux.createStore({
 
 		if (nodeIndex !== undefined)
 		{
-			this.items.splice(nodeIndex, 1);
-			this.trigger(this.items);	
+			this.state.items.splice(nodeIndex, 1);
+			this.trigger(this.state);	
 		}
 		else
 			console.warn("Store tried to delete node with invalid id");
@@ -69,7 +72,7 @@ var Store = Reflux.createStore({
 		if (node)
 		{
 			node.name = e.name;
-			this.trigger(this.items);
+			this.trigger(this.state);
 		}
 		else
 			console.warn("Store tried to set node name of node with invalid id");
@@ -85,13 +88,18 @@ var Store = Reflux.createStore({
 			// Dummy Biz Logic: bind into range
 			node.value = Math.min(this.maxItemQuantity, Math.max(this.minItemQuantity, node.value));
 
-			this.trigger(this.items);
+			this.trigger(this.state);
 		}
 		else
 			console.warn("Store tried to inc node with invalid id");
+	},
+
+	onIncSummary: function() {
+		this.state.summaryCount = this.state.summaryCount + 1;
+		this.trigger(this.state)
 	}
 });
 
-Store.items = Store.getInitialItems()
+Store.state.items = Store.getInitialItems()
 
 module.exports = Store;

@@ -5,7 +5,7 @@ var Actions = require('./actions');
 var Summary = React.createClass({
 
 	propTypes: {
-		list:React.PropTypes.array.isRequired
+		visitCount:React.PropTypes.number.isRequired
 	},
 
 
@@ -15,7 +15,8 @@ var Summary = React.createClass({
 
 		return (
 			<div>
-				Hi
+				<p>Hi</p>
+				<p>Visted {this.props.visitCount} times</p>
 			</div>
 		);
 	}
