@@ -63,10 +63,10 @@ var App = React.createClass({
 	handleNewItem:function() {
 		if (this.state.itemName.length)
 		{
-			Actions.addItem({name:this.state.itemName});
+			Actions.addItem({name:this.state.itemName}); // will update store and trigger top level re-render
 
 			//Clear itemName text input
-			this.setState({itemName:''});
+			this.setState({itemName:''}); // set state updates only this component (not top level re-render, although in this case they are almost the same thing) 
 		}
 		else
 			console.warn('Items must have a name');
