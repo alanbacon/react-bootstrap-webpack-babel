@@ -75,7 +75,7 @@ var App = React.createClass({
 	},
 
 	onSummaryClick: (e) => {
-		Actions.incSummary()
+		// don't use me, use setStateFromUrl in store instead
 	},
 
 
@@ -83,16 +83,6 @@ var App = React.createClass({
 	//React component render
 
 	render: function() {
-		// Controlled vs uncontrolled input components - important reading
-		// 		https://facebook.github.io/react/docs/forms.html
-
-		// Why <ItemComponent key={item.id}... />  ?
-		// 		http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
-
-		// Styling divs - done here two ways, with an object (AddNewItemDivStyle), and an inline object <div style={{...}}>
-		// 		http://facebook.github.io/react/tips/inline-styles.html
-
-		// Links, by default, do not cause a re-render, they just change what is visible
 
 		return (
 			<HashRouter>

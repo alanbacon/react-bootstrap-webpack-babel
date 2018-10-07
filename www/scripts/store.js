@@ -50,12 +50,21 @@ var Store = Reflux.createStore({
 	setStateFromUrl: function () {
 		let loc = window.location.href;
 		let path = loc.split('#')[1];
-		let re = /\/item\/(.*)/
-		let mo = re.exec(path);
+		let mo
+
+		//item
+		let itemRe = /\/item\/(.*)/
+		mo = itemRe.exec(path);
 		if (mo) {
 			this.state.selectedItem = this.state.items[mo[1]];
 		}
-		console.log(path);
+
+		//summary
+		let summaryRe = /\/summary/
+		mo = summaryRe.exec(path);
+		if (mo) {
+			this.state.summaryCount = this.state.summaryCount + 1;
+		}
 	},
 
 	///////////////////////

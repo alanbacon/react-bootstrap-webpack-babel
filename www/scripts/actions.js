@@ -8,8 +8,6 @@ var Actions = Reflux.createActions([
 	"deleteItem",
 	"setItemName",
 	"incItem",
-	"incSummary",
-	"selectItem"
 ]);
 
 module.exports = Actions;
