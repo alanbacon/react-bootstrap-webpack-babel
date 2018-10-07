@@ -5,10 +5,9 @@ import { HashRouter, Switch, Route, Link } from 'react-router-dom'
 var Reflux = require('reflux');
 var Store = require('./store');
 var Actions = require('./actions');
-var PageHeader = require('react-bootstrap').PageHeader;
-var Button = require('react-bootstrap').Button;
-var Well = require('react-bootstrap').Well;
-var FormControl = require('react-bootstrap').FormControl;
+
+var ReactBootstrap = require('react-bootstrap');
+var Glyphicon = ReactBootstrap.Glyphicon;
 
 var Main = require('./main');
 var Summary = require('./summary');
@@ -35,6 +34,10 @@ var App = React.createClass({
 			storeState: Store.state,
 			itemName:''
 		};
+	},
+
+	componentDidMount: function () {
+		Store.getInitialItems()
 	},
 
 	////////////////////////////////////////////////////////////////////////////////////////
@@ -89,18 +92,24 @@ var App = React.createClass({
 		// Styling divs - done here two ways, with an object (AddNewItemDivStyle), and an inline object <div style={{...}}>
 		// 		http://facebook.github.io/react/tips/inline-styles.html
 
+		// Links, by default, do not cause a re-render, they just change what is visible
+
 		return (
 			<HashRouter>
 				<div>
 					<nav>
       					<ul>
 							<li><Link to='/'>Shop</Link></li>
-							<li><Link to='/summary' onClick={this.onSummaryClick}>Summary</Link></li>
+							<li><Link to='/summary' onClick={this.onSummaryClick}>
+									<Glyphicon glyph='gift' />
+								</Link></li>
 						</ul>
+
 					</nav>
 					<Switch>
 						<Route exact path='/' render={() =>  <Main list={this.state.storeState.items}/>} />
 						<Route path='/summary' render={() =>  <Summary visitCount={this.state.storeState.summaryCount}/>} />
+						<Route path='/item' render={() =>  <h3>{this.state.storeState.selectedItem.name}</h3>} />
 					</Switch>
 				</div>
 			</HashRouter>

@@ -11,6 +11,7 @@ var Store = Reflux.createStore({
 	state:{
 		items: [],
 		summaryCount: 0,
+		selectedItem: {}
 	},
 
 	minItemQuantity:1,
@@ -36,7 +37,25 @@ var Store = Reflux.createStore({
 	},
 
 	getInitialItems: function() {
-		return [new Item('Sausages', 3), new Item('Baked Beans', 1), new Item('Monkeys', 4)];
+		this.state.items = [new Item('Sausages', 3), new Item('Baked Beans', 1), new Item('Monkeys', 4)];
+		this.setStateFromUrl();
+		this.trigger(this.state);
+	},
+
+	urlPopState: function () {
+		this.setStateFromUrl();
+		this.trigger(this.state);
+	},
+
+	setStateFromUrl: function () {
+		let loc = window.location.href;
+		let path = loc.split('#')[1];
+		let re = /\/item\/(.*)/
+		let mo = re.exec(path);
+		if (mo) {
+			this.state.selectedItem = this.state.items[mo[1]];
+		}
+		console.log(path);
 	},
 
 	///////////////////////
@@ -97,9 +116,9 @@ var Store = Reflux.createStore({
 	onIncSummary: function() {
 		this.state.summaryCount = this.state.summaryCount + 1;
 		this.trigger(this.state)
-	}
+	},
 });
 
-Store.state.items = Store.getInitialItems()
+window.onpopstate = (e) => {Store.urlPopState()};
 
 module.exports = Store;

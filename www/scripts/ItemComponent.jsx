@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap');
 var Actions = require('./actions');
+import { Link } from 'react-router-dom'
 var Panel = ReactBootstrap.Panel;
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 var ButtonGroup = ReactBootstrap.ButtonGroup;
@@ -43,7 +44,7 @@ var ItemComponent = React.createClass({
 				<Panel bsSize='xsmall' header={'List Item ID ' + this.props.id}>
 					<div style={containerStyle}>
 						<div style={elemStyle}>
-							{this.props.name}: <b>{this.props.value}</b>
+							<Link to={`/item/${this.props.id}`}>{this.props.name}</Link>: <b>{this.props.value}</b>
 						</div>
 						<ButtonToolbar>
 							<ButtonGroup>
