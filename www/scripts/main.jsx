@@ -7,7 +7,7 @@ var Button = require('react-bootstrap').Button;
 var Well = require('react-bootstrap').Well;
 var FormControl = require('react-bootstrap').FormControl;
 
-var ItemComponent = require('./ItemComponent');
+import ItemComponent from './ItemComponent';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -15,33 +15,34 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-var Main = React.createClass({
+class Main extends React.Component {
 
-	propTypes: {
-		list:React.PropTypes.array.isRequired
-	},
+	// propTypes: {
+	// 	list:React.PropTypes.array.isRequired
+	// },
 
-	getInitialState: function() {
-		return {
+	constructor (props) {
+		super(props)
+		this.state =  {
 			itemName:''
 		};
-	},
+	}
 
 	//////////////////////////////////////////////
 	//Our component event handlers (onClicks, etc)
 
-	handleNewItemNameKeyUp:function(e)
+	handleNewItemNameKeyUp (e)
 	{
 		// Allow enter to add new items
 		if (e.keyCode === 13)
 			this.handleNewItem(e);
-	},
+	}
 
-	handleNewItemNameChange:function(e) {
+	handleNewItemNameChange (e) {
 		this.setState({itemName:e.target.value}); 
-	},
+	}
 
-	handleNewItem:function() {
+	handleNewItem () {
 		if (this.state.itemName.length)
 		{
 			this.props.addItem(this.state.itemName); // Actions update store which triggers top level re-rener
@@ -51,18 +52,18 @@ var Main = React.createClass({
 		}
 		else
 			console.warn('Items must have a name');
-	},
+	}
 
 	////////////////////////
 	//React component render
 
-	render: function() {
+	render () {
 		var AddNewItemDivStyle = {display:'flex', maxHeight:'34px'}; //showing my limited CSS skills here - maxHeight just makes the button sit nice
 
 		var AddNewItemButton;
 		// Enable / Disable Add Button depending on whether we have an itemName
 		if (this.state.itemName.length) {
-			AddNewItemButton = <Button bsStyle='success' onClick={this.handleNewItem}>+</Button>;
+			AddNewItemButton = <Button bsStyle='success' onClick={() => this.handleNewItem()}>+</Button>;
 		}
 		else {
 			AddNewItemButton = <Button bsStyle='success' disabled>+</Button>;
@@ -85,7 +86,7 @@ var Main = React.createClass({
 				<Well>
 					Add New Item
 					<div style={AddNewItemDivStyle}>
-						<FormControl type='text' onChange={this.handleNewItemNameChange} onKeyUp={this.handleNewItemNameKeyUp} value={this.state.itemName} />
+						<FormControl type='text' onChange={(e) => this.handleNewItemNameChange(e)} onKeyUp={(e) =>this.handleNewItemNameKeyUp(e)} value={this.state.itemName} />
 						{AddNewItemButton}
 					</div>
 				</Well>
@@ -100,6 +101,6 @@ var Main = React.createClass({
 			</div>
 		);
 	}
-});
+};
 
-module.exports = connect(null, mapDispatchToProps)(Main);
+export default connect(null, mapDispatchToProps)(Main);

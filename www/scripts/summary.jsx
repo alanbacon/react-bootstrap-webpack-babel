@@ -1,16 +1,17 @@
 //var React = require('react');
 import React from 'react';
-var Actions = require('./actions');
 
-var Summary = React.createClass({
+class Summary extends React.Component {
 
-	propTypes: {
-		visitCount:React.PropTypes.number.isRequired
-	},
+	// propTypes: {
+	// 	visitCount:React.PropTypes.number.isRequired
+	// },
 
-	render: function() {
+	constructor (props) {
+		super(props)
+	}
 
-
+	render () {
 		return (
 			<div>
 				<p>Hi</p>
@@ -18,6 +19,6 @@ var Summary = React.createClass({
 			</div>
 		);
 	}
-});
+};
 
-module.exports = Summary;
+export default Summary;

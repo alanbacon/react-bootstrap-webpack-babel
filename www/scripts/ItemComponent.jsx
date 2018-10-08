@@ -16,32 +16,36 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-var ItemComponent = React.createClass({
+class ItemComponent extends React.Component {
 
 	//React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
 	
-	propTypes: {
-		name:React.PropTypes.string.isRequired,
-		value:React.PropTypes.number.isRequired,
-		id:React.PropTypes.number.isRequired
-	},
+	// propTypes: {
+	// 	name:React.PropTypes.string.isRequired,
+	// 	value:React.PropTypes.number.isRequired,
+	// 	id:React.PropTypes.number.isRequired
+	// },
+
+	constructor (props) {
+		super(props)
+	}
 	
-	incItem: function()
+	incItem ()
 	{
 		this.props.incItem(this.props.id, 1);
-	},
+	}
 
-	decItem: function()
+	decItem ()
 	{
 		this.props.incItem(this.props.id, -1);
-	},
+	}
 
-	deleteItem: function()
+	deleteItem ()
 	{
 		this.props.deleteItem(this.props.id);
-	},
+	}
 
-	render: function ()
+	render  ()
 	{
 		//Watch out for React's camel-casing of CSS parameters - http://facebook.github.io/react/tips/inline-styles.html
 
@@ -56,17 +60,17 @@ var ItemComponent = React.createClass({
 						</div>
 						<ButtonToolbar>
 							<ButtonGroup>
-								<Button onClick={this.decItem}>-</Button>
-								<Button onClick={this.incItem}>+</Button>
+								<Button onClick={() => this.decItem()}>-</Button>
+								<Button onClick={() => this.incItem()}>+</Button>
 							</ButtonGroup>
 							<ButtonGroup>
-								<Button onClick={this.deleteItem}><Glyphicon glyph='remove' /></Button>
+								<Button onClick={() => this.deleteItem()}><Glyphicon glyph='remove' /></Button>
 							</ButtonGroup>
 						</ButtonToolbar>
 					</div>
 				</Panel>
 		);
 	}
-});
+};
 
-module.exports = connect(null, mapDispatchToProps)(ItemComponent);
+export default connect(null, mapDispatchToProps)(ItemComponent);
