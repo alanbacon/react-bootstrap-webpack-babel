@@ -8,8 +8,6 @@ var Summary = React.createClass({
 		visitCount:React.PropTypes.number.isRequired
 	},
 
-
-
 	render: function() {
 
 

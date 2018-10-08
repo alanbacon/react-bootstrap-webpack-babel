@@ -1,12 +1,20 @@
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap');
-var Actions = require('./actions');
+import { incItem, deleteItem } from './storeCtrl/actions';
 import { Link } from 'react-router-dom'
+import { connect } from "react-redux";
 var Panel = ReactBootstrap.Panel;
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 var ButtonGroup = ReactBootstrap.ButtonGroup;
 var Button = ReactBootstrap.Button;
 var Glyphicon = ReactBootstrap.Glyphicon;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  	incItem: (id, val) => dispatch(incItem(id, val)),
+  	deleteItem: (id) => dispatch(deleteItem(id))
+  }
+};
 
 var ItemComponent = React.createClass({
 
@@ -20,17 +28,17 @@ var ItemComponent = React.createClass({
 	
 	incItem: function()
 	{
-		Actions.incItem({id:this.props.id, inc:1});
+		this.props.incItem(this.props.id, 1);
 	},
 
 	decItem: function()
 	{
-		Actions.incItem({id:this.props.id, inc:-1});
+		this.props.incItem(this.props.id, -1);
 	},
 
 	deleteItem: function()
 	{
-		Actions.deleteItem({id:this.props.id});
+		this.props.deleteItem(this.props.id);
 	},
 
 	render: function ()
@@ -61,4 +69,4 @@ var ItemComponent = React.createClass({
 	}
 });
 
-module.exports = ItemComponent;
+module.exports = connect(null, mapDispatchToProps)(ItemComponent);

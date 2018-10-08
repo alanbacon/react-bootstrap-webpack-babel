@@ -1,6 +1,7 @@
 //var React = require('react');
 import React from 'react';
-var Actions = require('./actions');
+import { addItem } from './storeCtrl/actions';
+import { connect } from "react-redux";
 var PageHeader = require('react-bootstrap').PageHeader;
 var Button = require('react-bootstrap').Button;
 var Well = require('react-bootstrap').Well;
@@ -8,6 +9,11 @@ var FormControl = require('react-bootstrap').FormControl;
 
 var ItemComponent = require('./ItemComponent');
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+  	addItem: (name) => dispatch(addItem(name))
+  }
+};
 
 var Main = React.createClass({
 
@@ -38,7 +44,7 @@ var Main = React.createClass({
 	handleNewItem:function() {
 		if (this.state.itemName.length)
 		{
-			Actions.addItem({name:this.state.itemName}); // Actions update store which triggers top level re-rener
+			this.props.addItem(this.state.itemName); // Actions update store which triggers top level re-rener
 
 			//Clear itemName text input
 			this.setState({itemName:''});// set state updates only this component (not top level re-render, although in this case they are almost the same thing) 
@@ -96,4 +102,4 @@ var Main = React.createClass({
 	}
 });
 
-module.exports = Main;
+module.exports = connect(null, mapDispatchToProps)(Main);

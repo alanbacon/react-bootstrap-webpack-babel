@@ -1,21 +1,23 @@
 {
-  "name": "ux-webpack-react",
+  "name": "ux-react-bootstrap-webpack",
   "version": "1.0.0",
   "description": "Simple webpack-react-bootstrap starter environment",
   "scripts": {
     "production": "webpack -p --config webpack.production.config.js",
     "dev": "webpack --devtool inline-source-map --progress --colors --watch --watch-poll --config webpack.dev.config.js",
-    "dev-server": "webpack-dev-server --devtool eval --progress --colors --watch-poll --config webpack.dev.config.js"
+    "dev-server": "webpack-dev-server --devtool inline-source-map --devtool eval --progress --colors --watch-poll --config webpack.dev.config.js"
   },
   "main": "scripts/main.js",
-  "author": "Matthew Brooks",
+  "author": "Alan Bacon",
   "license": "",
   "dependencies": {
     "bootstrap": "^3.3.5",
     "react": "^0.14.0",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^0.14.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
     "reflux": "^6.4.1"
   },
   "devDependencies": {
@@ -25,7 +27,6 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "bootstrap": "^3.3.7",
     "css-loader": "^0.28.1",
     "file-loader": "^0.11.1",
     "json-loader": "^0.5.2",
