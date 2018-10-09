@@ -1,5 +1,6 @@
 //var React = require('react');
 import React from 'react';
+import PropTypes from 'prop-types';
 import { addItem } from './storeCtrl/actions';
 import { connect } from "react-redux";
 var PageHeader = require('react-bootstrap').PageHeader;
@@ -16,10 +17,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class Main extends React.Component {
-
-	// propTypes: {
-	// 	list:React.PropTypes.array.isRequired
-	// },
 
 	constructor (props) {
 		super(props)
@@ -102,5 +99,9 @@ class Main extends React.Component {
 		);
 	}
 };
+
+Main.propTypes = {
+	list: PropTypes.array.isRequired
+}
 
 export default connect(null, mapDispatchToProps)(Main);

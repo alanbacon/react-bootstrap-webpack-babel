@@ -1,11 +1,8 @@
 //var React = require('react');
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Summary extends React.Component {
-
-	// propTypes: {
-	// 	visitCount:React.PropTypes.number.isRequired
-	// },
 
 	constructor (props) {
 		super(props)
@@ -20,5 +17,9 @@ class Summary extends React.Component {
 		);
 	}
 };
+
+Summary.propTypes = {
+	visitCount: PropTypes.number.isRequired
+}
 
 export default Summary;

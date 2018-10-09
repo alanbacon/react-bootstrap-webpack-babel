@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react' ;
+import PropTypes from 'prop-types';
 var ReactBootstrap = require('react-bootstrap');
 import { incItem, deleteItem } from './storeCtrl/actions';
 import { Link } from 'react-router-dom'
@@ -19,12 +20,6 @@ const mapDispatchToProps = (dispatch) => {
 class ItemComponent extends React.Component {
 
 	//React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
-	
-	// propTypes: {
-	// 	name:React.PropTypes.string.isRequired,
-	// 	value:React.PropTypes.number.isRequired,
-	// 	id:React.PropTypes.number.isRequired
-	// },
 
 	constructor (props) {
 		super(props)
@@ -72,5 +67,11 @@ class ItemComponent extends React.Component {
 		);
 	}
 };
+
+ItemComponent.propTypes = {
+	name: PropTypes.string.isRequired,
+	value: PropTypes.number.isRequired,
+	id: PropTypes.number.isRequired
+}
 
 export default connect(null, mapDispatchToProps)(ItemComponent);
