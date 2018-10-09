@@ -3,10 +3,7 @@ var node_dir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
 	entry: {
-		shoppingList: [
-
-			path.resolve(__dirname,'./scripts/index.js')
-		]
+		shoppingList: path.resolve(__dirname,'./scripts/index.js')
 	},
 
 	resolve: {
@@ -32,6 +29,7 @@ module.exports = {
 						}
 					] 
 				},
+				// some of these loaders are for loading bootstrap's files
 				{test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff'},
       			{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
 		      	{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},

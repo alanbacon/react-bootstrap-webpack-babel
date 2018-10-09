@@ -4,8 +4,8 @@
   "description": "Simple webpack-react-bootstrap starter environment",
   "scripts": {
     "production": "webpack -p --config webpack.production.config.js",
-    "dev": "webpack --devtool inline-source-map --progress --colors --watch --watch-poll --config webpack.dev.config.js",
-    "dev-server": "webpack-dev-server --devtool inline-source-map --devtool eval --progress --colors --watch-poll --config webpack.dev.config.js"
+    "dev": "webpack --mode development --devtool inline-source-map --progress --colors --watch --watch-poll --config webpack.dev.config.js",
+    "dev-server": "webpack-dev-server --mode development --devtool inline-source-map --devtool eval --progress --colors --watch-poll --config webpack.dev.config.js"
   },
   "main": "scripts/main.js",
   "author": "Alan Bacon",
@@ -27,12 +27,13 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.1",
-    "file-loader": "^0.11.1",
-    "json-loader": "^0.5.2",
+    "file-loader": "^2.0.0",
+    "json-loader": "^0.5.7",
     "jsx-loader": "^0.13.2",
-    "style-loader": "^0.17.0",
+    "style-loader": "^0.23.1",
     "url-loader": "^1.1.1",
-    "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
   }
 }
