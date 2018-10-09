@@ -7,7 +7,7 @@ import Store from './storeCtrl/store';
 const ReactBootstrap = require('react-bootstrap');
 const Glyphicon = ReactBootstrap.Glyphicon;
 
-import Main from './main';
+import Shop from './shop';
 import Summary from './summary';
 
 const mapStateToProps = (state) => {
@@ -16,20 +16,6 @@ const mapStateToProps = (state) => {
 
 class App extends React.Component {
 
-	////////////////////////////////////////////////////////
-	// Reflux listener mixin
-	//https://github.com/reflux/refluxjs#using-refluxconnect
-
-
-	// alanb: is this called by trigger in Store? because 'state' is specified, the first argument to trigger get passed to this.State.storeState
-	// alanb: because state is being changed, render gets called?
-	//mixins: [Reflux.connect(Store,'state')], //listen to the store
-
-
-	/////////////////////////////////////////////////////////////////////////////
-	//React getInitialState
-	//https://facebook.github.io/react/docs/component-specs.html#getinitialstate
-
 	constructor (props) {
 		super(props)
 	}
@@ -37,7 +23,6 @@ class App extends React.Component {
 	componentDidMount () {
 		Store.getInitialStateFromApi()
 	}
-
 
 	////////////////////////////////////////////////////////////////////////////////////////
 	//React componentWillMount
@@ -72,7 +57,7 @@ class App extends React.Component {
 
 					</nav>
 					<Switch>
-						<Route exact path='/' render={() =>  <Main list={this.props.items}/>} />
+						<Route exact path='/' render={() =>  <Shop list={this.props.items}/>} />
 						<Route path='/summary' render={() =>  <Summary visitCount={this.props.summaryCount}/>} />
 						<Route path='/item' render={() =>  <h3>{this.props.selectedItem.name}</h3>} />
 					</Switch>

@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch) => {
 
 class ItemComponent extends React.Component {
 
-	//React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
 
 	constructor (props) {
 		super(props)
@@ -67,6 +66,8 @@ class ItemComponent extends React.Component {
 		);
 	}
 };
+
+//React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
 
 ItemComponent.propTypes = {
 	name: PropTypes.string.isRequired,
