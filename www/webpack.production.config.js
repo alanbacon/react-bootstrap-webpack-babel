@@ -2,6 +2,7 @@ var path = require('path');
 var node_dir = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
+	mode: 'production',
 	entry: {
 		shoppingList: path.resolve(__dirname,'./scripts/index.js')
 	},

@@ -78,7 +78,7 @@ class Main extends React.Component {
 		return (
 			<div style={{padding:'16px 16px', maxWidth:'600px'}}>
 
-				<PageHeader>LET'S PRETEND WE'RE GOING SHOPPING</PageHeader>
+				<PageHeader>Let's Pretend We're Going Shopping</PageHeader>
 
 				<Well>
 					Add New Item

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Simple webpack-react-bootstrap starter environment",
   "scripts": {
-    "production": "webpack -p --config webpack.production.config.js",
-    "dev": "webpack --mode development --devtool inline-source-map --progress --colors --watch --watch-poll --config webpack.dev.config.js",
-    "dev-server": "webpack-dev-server --mode development --devtool inline-source-map --devtool eval --progress --colors --watch-poll --config webpack.dev.config.js"
+    "production": "webpack --config webpack.production.config.js",
+    "dev":        "webpack            --progress --colors --watch --config webpack.dev.config.js",
+    "dev-server": "webpack-dev-server --progress --colors --watch --config webpack.dev.config.js"
   },
   "main": "scripts/main.js",
   "author": "Alan Bacon",
