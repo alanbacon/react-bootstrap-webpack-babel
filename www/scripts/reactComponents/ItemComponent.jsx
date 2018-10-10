@@ -8,9 +8,10 @@ var ButtonGroup = ReactBootstrap.ButtonGroup;
 var Button = ReactBootstrap.Button;
 var Glyphicon = ReactBootstrap.Glyphicon;
 
-
-class ItemComponent extends React.Component {
-
+// pure component implements a default "shouldComponentUpdate" method
+// the method shallow compares props and state with previous props and previous state
+// it will not re-render if no prop/state has changed.
+class ItemComponent extends React.PureComponent {
 
 	constructor (props) {
 		super(props)
