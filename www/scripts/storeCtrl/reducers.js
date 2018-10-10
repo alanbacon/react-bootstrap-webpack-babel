@@ -115,7 +115,7 @@ function summaryCount (summaryCount=0, action) {
   }
 }
 
-function isLoading (isLoading=0, action) {
+function isLoading (isLoading=false, action) {
   switch (action.type) {
 
     case actionNames.LOADING: {
