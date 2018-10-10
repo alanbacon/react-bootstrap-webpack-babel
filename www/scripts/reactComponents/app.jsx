@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom'
 
 require('../../node_modules/bootstrap/dist/css/bootstrap.css');
@@ -73,11 +74,13 @@ class App extends React.Component {
 
 //React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
 
-// App.propTypes = {
-// 	list: PropTypes.array.isRequired,
-// 	isLoading: PropTypes.bool.isRequired,
-// 	addItem: PropTypes.function.isRequired
-// }
+App.propTypes = {
+	items: PropTypes.array.isRequired,
+	isLoading: PropTypes.bool.isRequired,
+	addItem: PropTypes.func.isRequired,
+	deleteItem: PropTypes.func.isRequired,
+	incItem: PropTypes.func.isRequired
+}
 
 // Export a function that kicks the React rendering off (App is our top level React component)
 

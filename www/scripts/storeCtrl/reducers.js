@@ -25,8 +25,6 @@ const getItemIndexFromId = (id, items) => {
 
 const rootReducer = (state=initialState, action) => {
   switch (action.type) {
-    case actionNames.URL_POP: 
-      return { ...state, ...action.payload };
 
     case actionNames.ADD_ITEM: {
       let items = [...state.items, action.payload];

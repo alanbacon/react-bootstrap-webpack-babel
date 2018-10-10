@@ -18,6 +18,7 @@ window.onpopstate = async (e) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {...state};
 };
 
@@ -48,7 +49,7 @@ const AppConnected = connect(mapStateToProps, mapDispatchToProps)(App)
 
 ReactDOM.render(
 	<Provider store={Store}>
-		<AppConnected />
+		<AppConnected/>
 	</Provider>,
 	document.getElementById('react')
 );
