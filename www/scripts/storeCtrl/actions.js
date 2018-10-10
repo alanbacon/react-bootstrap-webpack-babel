@@ -1,17 +1,17 @@
 import actionNames from "./actionNames";
 import Item from '../Item'
 
-const sleep = async (ms) => {
+async function sleep (ms) {
 	  let prm = new Promise(resolve => setTimeout(resolve, ms));
     await prm;
 }
 
-const getItemsFromServer = async () => { // mock slow server call with sleep function
+async function getItemsFromServer () { // mock slow server call with sleep function
 	await sleep(1000);
 	return [new Item('Sausages', 3), new Item('Baked Beans', 1), new Item('Monkeys', 4)];
 }
 
-const genActionFromUrl = async (url) => {
+async function genActionFromUrl (url) {
 	  // there could be API calls in this function
 		let path = url.split('#')[1];
 		let mo
@@ -65,10 +65,8 @@ export const onInitialLoad = async (variant) => {
 };
 
 export const addItem = (name) => {
-	return {
-		type: actionNames.ADD_ITEM, 
-		payload: new Item(name)
-	}
+	let newItems = [new Item(name)];
+	return addItems(newItems);
 };
 
 export const addItems = (items) => {

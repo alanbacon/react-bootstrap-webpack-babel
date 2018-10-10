@@ -9,7 +9,7 @@ import App from './reactComponents/app';
 
 const Store = createStore(rootReducer);
 
-const getUrl = () => {
+function getUrl () {
   return window.location.href;
 }
 
@@ -17,13 +17,12 @@ window.onpopstate = async (e) => {
   Store.dispatch( await Actions.urlPop(getUrl()) )
 };
 
-const mapStateToProps = (state) => {
-  console.log(state)
+function mapStateToProps (state) {
   return {...state};
 };
 
 // dispatch is a Store method
-const mapDispatchToProps = (dispatch) => {
+function mapDispatchToProps (dispatch) {
   return {
   	onInitialLoad: async () => {
   		dispatch(await Actions.onInitialLoad('loading'))
