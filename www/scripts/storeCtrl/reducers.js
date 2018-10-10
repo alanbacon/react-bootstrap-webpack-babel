@@ -1,5 +1,7 @@
 import actionNames from "./actionNames";
 
+// https://redux.js.org/basics/reducers
+
 const MAX_ITEM_QUANTITY = 9;
 const MIN_ITEM_QUANTITY = 1;
 
