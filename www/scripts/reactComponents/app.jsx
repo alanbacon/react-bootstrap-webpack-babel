@@ -56,7 +56,7 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path='/' render={() =>  
 							<Shop 
-								list={this.props.items} 
+								items={this.props.items} 
 								isLoading={this.props.isLoading}
 								addItem={this.props.addItem}
 								deleteItem={this.props.deleteItem}

@@ -1,10 +1,11 @@
 //var React = require('react');
 import React from 'react';
 import PropTypes from 'prop-types';
-var PageHeader = require('react-bootstrap').PageHeader;
-var Button = require('react-bootstrap').Button;
-var Well = require('react-bootstrap').Well;
-var FormControl = require('react-bootstrap').FormControl;
+const RB = require('react-bootstrap');
+const PageHeader = RB.PageHeader;
+const Button = RB.Button;
+const Well = RB.Well;
+const FormControl = RB.FormControl;
 
 import ItemComponent from './ItemComponent';
 
@@ -13,7 +14,8 @@ class Shop extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state =  {
-			itemName:''
+			itemName:'',
+			numItemsToShow: 100
 		};
 	}
 
@@ -43,13 +45,17 @@ class Shop extends React.Component {
 			console.warn('Items must have a name');
 	}
 
+	changeNumItemsToShow (e) {
+		this.setState({numItemsToShow:e.target.value})
+	}
+
 	////////////////////////
 	//React component render
 
 	render () {
-		var AddNewItemDivStyle = {display:'flex', maxHeight:'34px'}; //showing my limited CSS skills here - maxHeight just makes the button sit nice
+		let AddNewItemDivStyle = {display:'flex', maxHeight:'34px'}; //showing my limited CSS skills here - maxHeight just makes the button sit nice
 
-		var AddNewItemButton;
+		let AddNewItemButton;
 		// Enable / Disable Add Button depending on whether we have an itemName
 		if (this.state.itemName.length) {
 			AddNewItemButton = <Button bsStyle='success' onClick={() => this.handleNewItem()}>+</Button>;
@@ -57,6 +63,9 @@ class Shop extends React.Component {
 		else {
 			AddNewItemButton = <Button bsStyle='success' disabled>+</Button>;
 		}
+
+		let itemsReversed = this.props.items.slice().reverse()
+		itemsReversed = itemsReversed.slice(0, this.state.numItemsToShow)
 
 
 
@@ -80,13 +89,23 @@ class Shop extends React.Component {
 						<FormControl type='text' onChange={(e) => this.handleNewItemNameChange(e)} onKeyUp={(e) =>this.handleNewItemNameKeyUp(e)} value={this.state.itemName} />
 						{AddNewItemButton}
 					</div>
+					<hr/>
+					Number of Items To Show
+					<input 
+						type='range' 
+						value={this.state.numItemsToShow} 
+						onChange={(e) => this.changeNumItemsToShow(e)}
+						min={0}
+						max={this.props.items.length}
+						step={1}
+					/>
 				</Well>
 				{// alanb: how do i put an if statment in here so that whether this component displays or not depends on some boolean variable?
 				// ans: "https://facebook.github.io/react/tips/if-else-in-JSX.html"
 				//       https://reactjs.org/docs/conditional-rendering.html
 				}
 				{
-					this.props.list.map((item) => {
+					itemsReversed.map((item) => {
 						return (
 							<ItemComponent 
 								key={item.id} 
@@ -114,7 +133,7 @@ class Shop extends React.Component {
 //React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
 
 Shop.propTypes = {
-	list: PropTypes.array.isRequired,
+	items: PropTypes.array.isRequired,
 	isLoading: PropTypes.bool.isRequired,
 	addItem: PropTypes.func.isRequired,
 	deleteItem: PropTypes.func.isRequired,
