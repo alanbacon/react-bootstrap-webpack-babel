@@ -5,6 +5,18 @@
 	</head>
 	<body>
 		<div id='react'></div>
+		<script>
+			// reload javascript on refresh everytime, prevents caching
+			// not needed when using webpack dev-server but useful if using a different backend
+			var url="/shoppingList.bundle.js";
+			var extra="?t=";
+			var randomNum = String((Math.floor(Math.random() * 200000000000000)));
+			var script = document.createElement('script');
+			script.src = url+extra+randomNum;
+			document.head.appendChild(script);
+		</script>
+		<!--
 		<script src='shoppingList.bundle.js'></script>
+		-->
 	</body>
 </html>
