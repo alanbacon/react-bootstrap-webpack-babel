@@ -1,21 +1,13 @@
 import React from 'react' ;
 import PropTypes from 'prop-types';
 var ReactBootstrap = require('react-bootstrap');
-import { incItem, deleteItem } from './storeCtrl/actions';
 import { Link } from 'react-router-dom'
-import { connect } from "react-redux";
 var Panel = ReactBootstrap.Panel;
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 var ButtonGroup = ReactBootstrap.ButtonGroup;
 var Button = ReactBootstrap.Button;
 var Glyphicon = ReactBootstrap.Glyphicon;
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  	incItem: (id, val) => dispatch(incItem(id, val)),
-  	deleteItem: (id) => dispatch(deleteItem(id))
-  }
-};
 
 class ItemComponent extends React.Component {
 
@@ -72,7 +64,9 @@ class ItemComponent extends React.Component {
 ItemComponent.propTypes = {
 	name: PropTypes.string.isRequired,
 	value: PropTypes.number.isRequired,
-	id: PropTypes.number.isRequired
+	id: PropTypes.number.isRequired,
+	incItem: PropTypes.func.isRequired,
+	deleteItem: PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(ItemComponent);
+export default ItemComponent;

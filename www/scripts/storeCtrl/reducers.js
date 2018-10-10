@@ -6,7 +6,8 @@ const MIN_ITEM_QUANTITY = 1;
 const initialState = {
   items: [],
   summaryCount: 0,
-  selectedItem: {}
+  selectedItem: {},
+  isLoading: false
 };
 
 const getItemFromId = (id, items) => {
@@ -29,6 +30,11 @@ const rootReducer = (state=initialState, action) => {
 
     case actionNames.ADD_ITEM: {
       let items = [...state.items, action.payload];
+      return ({...state, ...{items}});
+    }
+
+    case actionNames.ADD_ITEMS: {
+      let items = [...state.items, ...action.payload];
       return ({...state, ...{items}});
     }
 
@@ -81,9 +87,38 @@ const rootReducer = (state=initialState, action) => {
       }
     }
 
-    case actionNames.INC_SUMMARY: {
-      state.summaryCount += 1; // numbers are immutable objects so this is safe
+    case actionNames.SELECT_ITEM: {
+      let item = getItemFromId(action.payload.id, state.items);
+      if (item != undefined) {
+        return ({
+          ...state, 
+          ...{selectedItem: item}
+        })
+      } else {
+        console.warn("tried to select item with invalid id");
+        return ({
+          ...state, 
+          ...{selectedItem: {} }
+        })
+      }
     }
+
+    case actionNames.INC_SUMMARY: {
+      return ({
+        ...state, 
+        ...{summaryCount: (state.summaryCount + 1)}
+      }); 
+    }
+
+    case actionNames.LOADING: {
+      return ({
+        ...state, 
+        ...{isLoading: action.payload}
+      });
+    }
+
+    case actionNames.NOOP:
+      return state;
 
     default:
       return state;

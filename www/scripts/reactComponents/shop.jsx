@@ -1,20 +1,12 @@
 //var React = require('react');
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addItem } from './storeCtrl/actions';
-import { connect } from "react-redux";
 var PageHeader = require('react-bootstrap').PageHeader;
 var Button = require('react-bootstrap').Button;
 var Well = require('react-bootstrap').Well;
 var FormControl = require('react-bootstrap').FormControl;
 
 import ItemComponent from './ItemComponent';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  	addItem: (name) => dispatch(addItem(name))
-  }
-};
 
 class Shop extends React.Component {
 
@@ -66,6 +58,8 @@ class Shop extends React.Component {
 			AddNewItemButton = <Button bsStyle='success' disabled>+</Button>;
 		}
 
+
+
 		// Controlled vs uncontrolled input components - important reading
 		// 		https://facebook.github.io/react/docs/forms.html
 
@@ -89,19 +83,42 @@ class Shop extends React.Component {
 				</Well>
 				{// alanb: how do i put an if statment in here so that whether this component displays or not depends on some boolean variable?
 				// ans: "https://facebook.github.io/react/tips/if-else-in-JSX.html"
+				//       https://reactjs.org/docs/conditional-rendering.html
 				}
 				{
-					this.props.list.map(function(item) {
-						return <ItemComponent key={item.id} id={item.id} name={item.name} value={item.value}/>;
+					this.props.list.map((item) => {
+						return (
+							<ItemComponent 
+								key={item.id} 
+								id={item.id} 
+								name={item.name} 
+								value={item.value}
+								deleteItem={this.props.deleteItem}
+								incItem={this.props.incItem}
+							/>
+						);
 					})
+				}
+				{
+					this.props.isLoading ? (
+						<h3>Loading</h3>
+					) : (
+						<span/>
+					)
 				}
 			</div>
 		);
 	}
 };
 
+//React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
+
 Shop.propTypes = {
-	list: PropTypes.array.isRequired
+	list: PropTypes.array.isRequired,
+	isLoading: PropTypes.bool.isRequired,
+	addItem: PropTypes.func.isRequired,
+	deleteItem: PropTypes.func.isRequired,
+	incItem: PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(Shop);
+export default Shop;

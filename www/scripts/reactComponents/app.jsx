@@ -1,18 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom'
-import { Provider, connect } from "react-redux";
-import Store from './storeCtrl/store';
 
+require('../../node_modules/bootstrap/dist/css/bootstrap.css');
 const ReactBootstrap = require('react-bootstrap');
 const Glyphicon = ReactBootstrap.Glyphicon;
 
 import Shop from './shop';
 import Summary from './summary';
-
-const mapStateToProps = (state) => {
-  return {...state};
-};
 
 class App extends React.Component {
 
@@ -21,7 +15,9 @@ class App extends React.Component {
 	}
 
 	componentDidMount () {
-		Store.getInitialStateFromApi()
+		if (typeof this.props.onInitialLoad === 'function') {
+			this.props.onInitialLoad()
+		}	
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +53,15 @@ class App extends React.Component {
 
 					</nav>
 					<Switch>
-						<Route exact path='/' render={() =>  <Shop list={this.props.items}/>} />
+						<Route exact path='/' render={() =>  
+							<Shop 
+								list={this.props.items} 
+								isLoading={this.props.isLoading}
+								addItem={this.props.addItem}
+								deleteItem={this.props.deleteItem}
+								incItem={this.props.incItem}
+							/>
+						}/>
 						<Route path='/summary' render={() =>  <Summary visitCount={this.props.summaryCount}/>} />
 						<Route path='/item' render={() =>  <h3>{this.props.selectedItem.name}</h3>} />
 					</Switch>
@@ -67,17 +71,14 @@ class App extends React.Component {
 	}
 };
 
+//React validates prop types for you - https://facebook.github.io/react/docs/reusable-components.html
+
+// App.propTypes = {
+// 	list: PropTypes.array.isRequired,
+// 	isLoading: PropTypes.bool.isRequired,
+// 	addItem: PropTypes.function.isRequired
+// }
+
 // Export a function that kicks the React rendering off (App is our top level React component)
 
-const AppConnected = connect(mapStateToProps)(App)
-
-module.exports = {
-	go:function(){
-		ReactDOM.render(
-			<Provider store={Store}>
-				<AppConnected />
-			</Provider>,
-			document.getElementById('react')
-		);
-	}
-};
+export default App
