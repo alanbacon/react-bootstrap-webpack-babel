@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as RS from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 console.log(RS)
 
@@ -56,13 +58,17 @@ class Shop extends React.Component {
 		if (this.state.itemName.length) {
 			AddNewItemButton = 
 				<RS.InputGroupAddon addonType="append">
-					<RS.Button color='success' onClick={() => this.handleNewItem()}>+</RS.Button>
+					<RS.Button color='success' onClick={() => this.handleNewItem()}>
+						<FontAwesomeIcon icon={faPlus} />
+					</RS.Button>
 				</RS.InputGroupAddon>
 		}
 		else {
 			AddNewItemButton = 
 				<RS.InputGroupAddon addonType="append">
-					<RS.Button color='success' disabled>+</RS.Button>
+					<RS.Button color='success' disabled>
+						<FontAwesomeIcon icon={faPlus} />
+					</RS.Button>
 				</RS.InputGroupAddon>
 		}
 

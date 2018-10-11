@@ -16,27 +16,22 @@ module.exports = {
 	},
 	module: {
 		rules: [
-				{ 	
-					test: /\.jsx?$/, 
-          exclude: /node_modules/,
-					use: 'babel-loader'
-				},
-				{ 	
-					test: /\.css$/, 
-					use: [
-						{ 
-							loader: 'style-loader' 
-						}, 
-						{ 
-							loader: 'css-loader'
-						}
-					] 
-				},
-				// some of these loaders are for loading bootstrap's files
-  			// {
-  			// 	test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
-  			// 	loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-  			// }
+			{ 	
+				test: /\.jsx?$/, 
+        exclude: /node_modules/,
+				use: 'babel-loader'
+			},
+			{ 	
+				test: /\.css$/, 
+				use: [
+					{ 
+						loader: 'style-loader' 
+					}, 
+					{ 
+						loader: 'css-loader'
+					}
+				] 
+			}
 		]
 	}             
 };

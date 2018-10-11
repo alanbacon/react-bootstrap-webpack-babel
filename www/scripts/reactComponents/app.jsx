@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-//const ReactBootstrap = require('react-bootstrap');
 import * as RS from 'reactstrap'
-const Glyphicon = RS.Glyphicon;
+
+// https://fontawesome.com/icons?d=listing&s=light,regular,solid&m=free
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 import Shop from './shop';
 import Summary from './summary';
@@ -49,9 +50,7 @@ class App extends React.Component {
       			<ul>
 							<li><Link to='/'>Shop</Link></li>
 							<li><Link to='/summary' onClick={this.onSummaryClick}>
-								Summary
-									{//<Glyphicon glyph='gift' />
-									}
+									<FontAwesomeIcon icon={faShoppingCart} />
 								</Link></li>
 						</ul>
 

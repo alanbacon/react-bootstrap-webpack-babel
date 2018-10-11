@@ -3,7 +3,6 @@ var productionConfig = require('./webpack.production.config')
 var developmentConfig = Object.assign(productionConfig, {
 	mode: 'development',
 	devtool: 'inline-module-source-map',
-	//devtool: 'eval',
 	devServer: {
 		port: 8888
   },
