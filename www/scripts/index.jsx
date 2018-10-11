@@ -7,6 +7,8 @@ import * as Actions from './storeCtrl/actions';
 import rootReducer from "./storeCtrl/reducers";
 import App from './reactComponents/app';
 
+// https://www.valentinog.com/blog/react-redux-tutorial-beginners/
+
 const Store = createStore(rootReducer);
 
 function getUrl () {
