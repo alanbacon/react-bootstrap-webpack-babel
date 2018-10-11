@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom'
 
-require('../../node_modules/bootstrap/dist/css/bootstrap.css');
-const ReactBootstrap = require('react-bootstrap');
-const Glyphicon = ReactBootstrap.Glyphicon;
+import 'bootstrap/dist/css/bootstrap.min.css';
+//const ReactBootstrap = require('react-bootstrap');
+import * as RS from 'reactstrap'
+const Glyphicon = RS.Glyphicon;
 
 import Shop from './shop';
 import Summary from './summary';
@@ -45,10 +46,12 @@ class App extends React.Component {
 			<HashRouter>
 				<div>
 					<nav>
-      					<ul>
+      			<ul>
 							<li><Link to='/'>Shop</Link></li>
 							<li><Link to='/summary' onClick={this.onSummaryClick}>
-									<Glyphicon glyph='gift' />
+								Summary
+									{//<Glyphicon glyph='gift' />
+									}
 								</Link></li>
 						</ul>
 
@@ -66,6 +69,7 @@ class App extends React.Component {
 						<Route path='/summary' render={() =>  <Summary visitCount={this.props.summaryCount}/>} />
 						<Route path='/item' render={() =>  <h3>{this.props.selectedItem.name}</h3>} />
 					</Switch>
+				
 				</div>
 			</HashRouter>
 		);

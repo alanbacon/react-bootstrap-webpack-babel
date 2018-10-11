@@ -1,12 +1,12 @@
 import React from 'react' ;
 import PropTypes from 'prop-types';
-var ReactBootstrap = require('react-bootstrap');
 import { Link } from 'react-router-dom'
-var Panel = ReactBootstrap.Panel;
-var ButtonToolbar = ReactBootstrap.ButtonToolbar;
-var ButtonGroup = ReactBootstrap.ButtonGroup;
-var Button = ReactBootstrap.Button;
-var Glyphicon = ReactBootstrap.Glyphicon;
+
+import * as RS from 'reactstrap'
+var ButtonToolbar = RS.ButtonToolbar;
+var ButtonGroup = RS.ButtonGroup;
+var Button = RS.Button;
+var Glyphicon = RS.Glyphicon;
 
 // pure component implements a default "shouldComponentUpdate" method
 // the method shallow compares props and state with previous props and previous state
@@ -36,26 +36,36 @@ class ItemComponent extends React.PureComponent {
 	{
 		//Watch out for React's camel-casing of CSS parameters - http://facebook.github.io/react/tips/inline-styles.html
 
-		var containerStyle = {display:'flex', justifyContent:'space-between'};
-		var elemStyle = {padding:'4px 16px', backgroundColor:'#ffffee'};
+		let elemStyle = {padding:'4px 16px', backgroundColor:'#ffffee'};
+		let toolbarStyle = {float: "right"}
+		let pillStyle = {float: "right", minWidth:'30px'}
+		let colStyle = {display: "flex", "alignItems": 'center'}
 
 		return (
-				<Panel bsSize='xsmall' header={'List Item ID ' + this.props.id}>
-					<div style={containerStyle}>
-						<div style={elemStyle}>
-							<Link to={`/item/${this.props.id}`}>{this.props.name}</Link>: <b>{this.props.value}</b>
-						</div>
-						<ButtonToolbar>
-							<ButtonGroup>
-								<Button onClick={() => this.decItem()}>-</Button>
-								<Button onClick={() => this.incItem()}>+</Button>
-							</ButtonGroup>
-							<ButtonGroup>
-								<Button onClick={() => this.deleteItem()}><Glyphicon glyph='remove' /></Button>
-							</ButtonGroup>
-						</ButtonToolbar>
-					</div>
-				</Panel>
+				<RS.Card className='mb-2'>
+					<RS.CardHeader>{'List Item ID ' + this.props.id}</RS.CardHeader>
+					<RS.CardBody>
+						<RS.Row>
+							<RS.Col className='col-md-9 col-sm-8 col-xs-6' style={elemStyle}>
+								<Link to={`/item/${this.props.id}`}>{this.props.name}</Link>:
+							</RS.Col>
+							<RS.Col className='col-md-3 col-sm-4 col-xs-6' style={colStyle}>
+								<RS.Badge color="info" className='mr-2' pill style={pillStyle}>{this.props.value}</RS.Badge>
+								<ButtonToolbar style={toolbarStyle}>
+									<ButtonGroup>
+										<Button onClick={() => this.decItem()}>-</Button>
+										<Button onClick={() => this.incItem()}>+</Button>
+									</ButtonGroup>
+									<ButtonGroup className='ml-1'>
+										<Button color='danger' onClick={() => this.deleteItem()}>x{
+										//<Glyphicon glyph='remove' />
+										}</Button>
+									</ButtonGroup>
+								</ButtonToolbar>
+							</RS.Col>
+						</RS.Row>
+					</RS.CardBody>
+				</RS.Card>
 		);
 	}
 };

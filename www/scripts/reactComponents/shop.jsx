@@ -1,11 +1,9 @@
 //var React = require('react');
 import React from 'react';
 import PropTypes from 'prop-types';
-const RB = require('react-bootstrap');
-const PageHeader = RB.PageHeader;
-const Button = RB.Button;
-const Well = RB.Well;
-const FormControl = RB.FormControl;
+import * as RS from 'reactstrap'
+
+console.log(RS)
 
 import ItemComponent from './ItemComponent';
 
@@ -53,15 +51,19 @@ class Shop extends React.Component {
 	//React component render
 
 	render () {
-		let AddNewItemDivStyle = {display:'flex', maxHeight:'34px'}; //showing my limited CSS skills here - maxHeight just makes the button sit nice
-
 		let AddNewItemButton;
 		// Enable / Disable Add Button depending on whether we have an itemName
 		if (this.state.itemName.length) {
-			AddNewItemButton = <Button bsStyle='success' onClick={() => this.handleNewItem()}>+</Button>;
+			AddNewItemButton = 
+				<RS.InputGroupAddon addonType="append">
+					<RS.Button color='success' onClick={() => this.handleNewItem()}>+</RS.Button>
+				</RS.InputGroupAddon>
 		}
 		else {
-			AddNewItemButton = <Button bsStyle='success' disabled>+</Button>;
+			AddNewItemButton = 
+				<RS.InputGroupAddon addonType="append">
+					<RS.Button color='success' disabled>+</RS.Button>
+				</RS.InputGroupAddon>
 		}
 
 		let itemsReversed = this.props.items.slice().reverse()
@@ -79,27 +81,36 @@ class Shop extends React.Component {
 		// 		http://facebook.github.io/react/tips/inline-styles.html
 
 		return (
-			<div style={{padding:'16px 16px', maxWidth:'600px'}}>
+			<div className='mr-4 ml-4'>
 
-				<PageHeader>Let's Pretend We're Going Shopping</PageHeader>
+				<h1>Let's Pretend We're Going Shopping</h1>
 
-				<Well>
-					Add New Item
-					<div style={AddNewItemDivStyle}>
-						<FormControl type='text' onChange={(e) => this.handleNewItemNameChange(e)} onKeyUp={(e) =>this.handleNewItemNameKeyUp(e)} value={this.state.itemName} />
-						{AddNewItemButton}
-					</div>
-					<hr/>
-					Number of Items To Show
-					<input 
-						type='range' 
-						value={this.state.numItemsToShow} 
-						onChange={(e) => this.changeNumItemsToShow(e)}
-						min={0}
-						max={this.props.items.length}
-						step={1}
-					/>
-				</Well>
+				<RS.Card className='mb-3 bg-light'>
+					<RS.CardBody>
+						Add New Item
+						<RS.InputGroup>
+							<RS.Input 
+								placeholder="new item name" 
+								value={this.state.itemName} 
+								onChange={(e) => this.handleNewItemNameChange(e)} 
+								onKeyUp={(e) =>this.handleNewItemNameKeyUp(e)} />
+							{AddNewItemButton}
+						</RS.InputGroup>
+						<br/>
+						Number of Items To Show
+						<br/>
+						<input 
+						  style={{'width':'100%'}}
+							type='range' 
+							value={this.state.numItemsToShow} 
+							onChange={(e) => this.changeNumItemsToShow(e)}
+							min={0}
+							max={this.props.items.length}
+							step={1}
+						/>
+					</RS.CardBody>
+				</RS.Card>
+
 				{// alanb: how do i put an if statment in here so that whether this component displays or not depends on some boolean variable?
 				// ans: "https://facebook.github.io/react/tips/if-else-in-JSX.html"
 				//       https://reactjs.org/docs/conditional-rendering.html
