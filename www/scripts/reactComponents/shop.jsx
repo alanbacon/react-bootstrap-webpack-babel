@@ -89,7 +89,7 @@ class Shop extends React.Component {
 		return (
 			<div className='mr-4 ml-4'>
 
-				<h1>Let's Pretend We're Going Shopping</h1>
+				<h3>Let's Pretend We're Going Shopping</h3>
 
 				<RS.Card className='mb-3 bg-light'>
 					<RS.CardBody>

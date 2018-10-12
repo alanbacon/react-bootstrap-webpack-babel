@@ -42,10 +42,10 @@ class ItemComponent extends React.PureComponent {
 					<RS.CardHeader>{'List Item ID ' + this.props.id}</RS.CardHeader>
 					<RS.CardBody>
 						<RS.Row>
-							<RS.Col className='col-md-9 col-sm-8 col-xs-6' style={elemStyle}>
+							<RS.Col className='col-md-9 col-sm-6 col-12' style={elemStyle}>
 								<Link to={`/item/${this.props.id}`}>{this.props.name}</Link>:
 							</RS.Col>
-							<RS.Col className='col-md-3 col-sm-4 col-xs-6' style={colStyle}>
+							<RS.Col className='col-md-3 col-sm-6 col-12' style={colStyle}>
 								<RS.Badge color="info" className='mr-2' pill style={pillStyle}>{this.props.value}</RS.Badge>
 								<RS.ButtonToolbar>
 									<RS.ButtonGroup>
