@@ -3,6 +3,10 @@
 	align-items: center;
 }
 
+.deleteButton {
+	margin-left: auto
+}
+
 .pill {
 	min-width: 30px;
 }
@@ -11,4 +15,9 @@
 	display: flex;
 	align-items: center; 
 	justify-content: flex-end;
+}
+
+.itemDescription {
+	padding:4px 16px;
+	background-color: #ffffee
 }
