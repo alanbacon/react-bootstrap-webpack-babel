@@ -7,6 +7,15 @@
 			This tags specifies how big the initial viewport should be
 		-->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--
+			if you set the intial-scale to less than 1 (to widen the available render width)
+			this will ensure that the page is zoomed out to fit the entire render in view
+			(this approach makes things look smaller and more spread out)
+		<script>
+			document.body.style.transform = "scale(1)";
+			document.body.style.transformOrigin = "0 0";
+		</script>
+		-->
 		<title>ux-react-webpack-bootstrap</title>
 	</head>
 	<body>
