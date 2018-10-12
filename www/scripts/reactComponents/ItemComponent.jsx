@@ -5,6 +5,8 @@ import * as RS from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
+import './ItemComponent.css';
+
 // pure component implements a default "shouldComponentUpdate" method
 // the method shallow compares props and state with previous props and previous state
 // it will not re-render if no prop/state has changed.
@@ -34,28 +36,29 @@ class ItemComponent extends React.PureComponent {
 		//Watch out for React's camel-casing of CSS parameters - http://facebook.github.io/react/tips/inline-styles.html
 
 		let elemStyle = {padding:'4px 16px', backgroundColor:'#ffffee'};
-		let pillStyle = {minWidth:'30px'}
 		let colStyle = {display: "flex", "alignItems": 'center', justifyContent: "flex-end"}
 
 		return (
 				<RS.Card className='mb-2'>
-					<RS.CardHeader>{'List Item ID ' + this.props.id}</RS.CardHeader>
+					<RS.CardHeader className='ItemComponentHeader'>
+						{'List Item ID ' + this.props.id}
+						<RS.ButtonGroup style={{'margin-left': 'auto'}}>
+							<RS.Button color='danger' onClick={() => this.deleteItem()}>
+								<FontAwesomeIcon icon={faTrashAlt} />
+							</RS.Button>
+						</RS.ButtonGroup>
+					</RS.CardHeader>
 					<RS.CardBody>
 						<RS.Row>
-							<RS.Col className='col-md-9 col-sm-6 col-12' style={elemStyle}>
+							<RS.Col className='col-md-9 col-sm-8 col-6' style={elemStyle}>
 								<Link to={`/item/${this.props.id}`}>{this.props.name}</Link>:
 							</RS.Col>
-							<RS.Col className='col-md-3 col-sm-6 col-12' style={colStyle}>
-								<RS.Badge color="info" className='mr-2' pill style={pillStyle}>{this.props.value}</RS.Badge>
+							<RS.Col className='col-md-3 col-sm-4 col-6 numerator'>
+								<RS.Badge color="info" className='mr-2 pill' pill>{this.props.value}</RS.Badge>
 								<RS.ButtonToolbar>
 									<RS.ButtonGroup>
 										<RS.Button onClick={() => this.decItem()}>-</RS.Button>
 										<RS.Button onClick={() => this.incItem()}>+</RS.Button>
-									</RS.ButtonGroup>
-									<RS.ButtonGroup className='ml-1'>
-										<RS.Button color='danger' onClick={() => this.deleteItem()}>
-											<FontAwesomeIcon icon={faTrashAlt} />
-										</RS.Button>
 									</RS.ButtonGroup>
 								</RS.ButtonToolbar>
 							</RS.Col>

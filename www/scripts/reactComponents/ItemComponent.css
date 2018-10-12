@@ -1,0 +1,14 @@
+.ItemComponentHeader {
+	display: flex; 
+	align-items: center;
+}
+
+.pill {
+	min-width: 30px;
+}
+
+.numerator {
+	display: flex;
+	align-items: center; 
+	justify-content: flex-end;
+}
