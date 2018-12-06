@@ -6,8 +6,8 @@ var developmentConfig = Object.assign(productionConfig, {
 	devServer: {
 		host: "0.0.0.0",
 		port: 8888
-  },
-  output: {
+	},
+	output: {
 		// dev server does not create an actual file on the local system, its a phantom file that 
 		// is asscessable by a url
 
